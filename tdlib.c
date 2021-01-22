@@ -159,7 +159,7 @@ PHP_METHOD (TdLib, receive) {
     void *tdClient = tdlib_client_get_instance(getThis());
     double timeout;
 
-    ZEND_PARSE_PARAMETERS_START(0, 1)
+    ZEND_PARSE_PARAMETERS_START(1, 1)
             Z_PARAM_DOUBLE(timeout);
     ZEND_PARSE_PARAMETERS_END();
 
