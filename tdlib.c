@@ -3,6 +3,7 @@
 #endif
 
 #include "php.h"
+#include "zend_smart_str.h"
 #include "php_tdlib.h"
 #include "ext/json/php_json.h"
 #include "zend_exceptions.h"
@@ -190,6 +191,7 @@ PHP_METHOD (TdLib, send) {
 
     if (tdClient) {
         php_json_encode(&buf, parameter, 0);
+        smart_str_0(&buf);
 
         td_json_client_send(tdClient, ZSTR_VAL(buf.s));
     }
@@ -205,6 +207,7 @@ PHP_METHOD (TdLib, execute) {
 
 
     php_json_encode(&buf, parameter, 0);
+    smart_str_0(&buf);
 
     const char *response = td_json_client_execute(NULL, ZSTR_VAL(buf.s));
 
